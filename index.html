@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ration Shop Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Change the background color of the navbar */
+        .navbar {
+            background-color: #007bff !important; /* You can use any color you prefer */
+        }
+
+        /* Change the text color of the navbar links */
+        .navbar-nav .nav-link {
+            color: #ffffff !important; /* White color for text */
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body class="home">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Ration Shop Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="indext.html">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Check Availability</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0" action="index1t.html">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Enquiry</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0" action="complaint_registration.html">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Complaint registration</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="app" class="text-center text-dark mt-5"> <!-- Set the text color to dark -->
+            <h1 class="display-4">Ration Shop Management System</h1>
+
+            <div class="row mt-4">
+                <div class="col-md-6 offset-md-3">
+                    <button id="btnAddProduct" class="btn btn-primary btn-lg">Add Product</button>
+                    <button id="btnViewInventory" class="btn btn-success btn-lg ml-3">View Inventory</button>
+                </div>
+            </div>
+
+            <div id="content" class="mt-5">
+                <!-- Content will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

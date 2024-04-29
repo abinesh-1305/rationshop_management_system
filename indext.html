@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ration Shop Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button[type="button"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+
+        #output p {
+            color: #333;
+        }
+
+        #output ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #output li {
+            margin-bottom: 5px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ration Shop Management</h1>
+        <form id="rationForm">
+            <div class="form-group">
+                <label for="shopName">Shop Name:</label>
+                <input type="text" id="shopName" name="shopName" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div class="form-group">
+                <label for="addItemName">Item Name to Add:</label>
+                <input type="text" id="addItemName" name="addItemName" required>
+            </div>
+            <div class="form-group">
+                <label for="addItemQuantity">Quantity to Add:</label>
+                <input type="number" id="addItemQuantity" name="addItemQuantity" required>
+                <span class="error-message" id="addItemQuantityError"></span>
+            </div>
+            <div class="form-group">
+                <label for="removeItemName">Item Name to Remove:</label>
+                <input type="text" id="removeItemName" name="removeItemName" required>
+            </div>
+            <div class="form-group">
+                <label for="removeItemQuantity">Quantity to Remove:</label>
+                <input type="number" id="removeItemQuantity" name="removeItemQuantity" required>
+                <span class="error-message" id="removeItemQuantityError"></span>
+            </div>
+            <button type="button" class="btn btn-primary" id="submitButton">Submit</button>
+        </form>
+
+        <div id="output"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="RationShop.js"></script>
+
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function() {
+            const shopNameInput = document.getElementById('shopName');
+            const locationInput = document.getElementById('location');
+            const addItemNameInput = document.getElementById('addItemName');
+            const addItemQuantityInput = document.getElementById('addItemQuantity');
+            const removeItemNameInput = document.getElementById('removeItemName');
+            const removeItemQuantityInput = document.getElementById('removeItemQuantity');
+
+            const addItemQuantityError = document.getElementById('addItemQuantityError');
+            const removeItemQuantityError = document.getElementById('removeItemQuantityError');
+            addItemQuantityError.textContent = '';
+            removeItemQuantityError.textContent = '';
+
+            let isValid = true;
+            if (isNaN(parseInt(addItemQuantityInput.value))) {
+                addItemQuantityError.textContent = 'Please enter a valid number';
+                isValid = false;
+            }
+
+            if (isNaN(parseInt(removeItemQuantityInput.value))) {
+                removeItemQuantityError.textContent = 'Please enter a valid number';
+                isValid = false;
+            }
+            if (!shopNameInput.value.trim()) {
+                shopNameInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                shopNameInput.classList.remove('is-invalid');
+            }
+
+            if (!locationInput.value.trim()) {
+                locationInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                locationInput.classList.remove('is-invalid');
+            }
+
+            if (!addItemNameInput.value.trim()) {
+                addItemNameInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                addItemNameInput.classList.remove('is-invalid');
+            }
+
+            if (!removeItemNameInput.value.trim()) {
+                removeItemNameInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                removeItemNameInput.classList.remove('is-invalid');
+            }
+        });
+    </script>
+</body>
+</html>

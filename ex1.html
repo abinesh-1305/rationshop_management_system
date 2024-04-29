@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('Open-a-Ration-Shop.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: rgba(255, 255, 255, 0.8); 
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #inventory {
+      margin-top: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+  </style>
+  <title>Ration Shop Management System</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Ration Shop Management System</h1>
+    <form id="rationForm">
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" name="itemName" required>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" required>
+
+      <label for="unit">Unit of Measurement:</label>
+      <input type="text" id="unit" name="unit" required>
+
+      <label for="price">Price per Unit:</label>
+      <input type="number" id="price" name="price" required>
+
+      <label for="date">Date of Purchase:</label>
+      <input type="date" id="date" name="date" required>
+
+      <button type="button" onclick="addRationItem()">Add Item</button>
+    </form>
+
+    <div id="inventory">
+      <h2>Inventory</h2>
+      <ul id="itemList"></ul>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('rationForm').reset(); 
+    });
+
+    function addRationItem() {
+      const itemName = document.getElementById('itemName').value;
+      const quantity = document.getElementById('quantity').value;
+      const unit = document.getElementById('unit').value;
+      const price = document.getElementById('price').value;
+      const date = document.getElementById('date').value;
+
+      if (itemName && quantity && unit && price && date) {
+        const itemList = document.getElementById('itemList');
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `<strong>${itemName}</strong> - Quantity: ${quantity} ${unit}, Price: ${price}, Date: ${date}`;
+        itemList.appendChild(listItem);
+
+        
+        document.getElementById('rationForm').reset();
+      } else {
+        alert('Please fill in all fields.');
+      }
+    }
+  </script>
+</body>
+</html>

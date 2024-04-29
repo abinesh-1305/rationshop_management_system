@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ration Shop Management System</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+
+  <h2>Ration Shop Information</h2>
+
+  <div id="shopInfo">
+
+    <p>Click the button to load shop information.</p>
+
+    <button type="button" onclick="loadShopInfo()">Load Shop Info</button>
+
+  </div>
+
+  <h2>Login Form</h2>
+
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <input type="submit" value="Login">
+  </form>
+
+  <div id="loginResponse"></div>
+
+  <script>
+
+    function loadShopInfo() {
+      const xhttp = new XMLHttpRequest();
+
+      xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+          document.getElementById("shopInfo").innerHTML = this.responseText;
+        }
+      };
+
+      // Assuming your server-side script is named shopinfo.php
+      xhttp.open("GET", "shopinfo.php", true);
+      xhttp.send();
+    }
+
+    $(document).ready(function () {
+      // Handle login form submission using jQuery
+      $("#loginForm").submit(function (event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Serialize the form data
+        var formData = $(this).serialize();
+
+        // Send AJAX request to the server
+        $.ajax({
+          type: "POST",
+          url: "login.php", // Replace with your server-side login script
+          data: formData,
+          success: function (response) {
+            // Display the response
+            $("#loginResponse").html(response);
+
+            // Redirect to the home page on successful login
+            if (response.includes("Login successful")) {
+              window.location.href = "index.html"; // Replace with the actual home page URL
+            }
+          }
+        });
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>
